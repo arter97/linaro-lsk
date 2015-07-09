@@ -895,7 +895,7 @@ void pci_msi_shutdown(struct pci_dev *dev)
 		return;
 
 	BUG_ON(list_empty(dev_to_msi_list(&dev->dev)));
-	desc = first_msi_entry(dev);
+	desc = first_pci_msi_entry(dev);
 
 	pci_msi_set_enable(dev, 0);
 	pci_intx_for_msi(dev, 1);
@@ -1039,7 +1039,6 @@ EXPORT_SYMBOL(pci_msi_enabled);
 
 void pci_msi_init_pci_dev(struct pci_dev *dev)
 {
-	INIT_LIST_HEAD(&dev->msi_list);
 }
 
 /**
